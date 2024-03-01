@@ -5,5 +5,5 @@ class Message{
   final String? imageUrl;   // ? significa que podria ser nulo
   final FromWho fromWho;
 
-  Message({required this.text, required this.imageUrl, required this.fromWho}); 
+  Message({required this.text, this.imageUrl, required this.fromWho}); 
 }
