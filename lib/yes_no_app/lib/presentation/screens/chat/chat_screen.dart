@@ -1,12 +1,16 @@
-import 'dart:js';
-
+//import 'dart:js';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
+import 'package:yes_no_app/presentation/Providers/chat_provider.dart';
 import 'package:yes_no_app/presentation/screens/chat/wiggets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/screens/chat/wiggets/chat/my_message_bubble.dart';
 import 'package:yes_no_app/presentation/screens/chat/wiggets/chat/shared/message_field_box.dart';
 
+
+
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,27 +30,33 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
+
 class _ChatView extends StatelessWidget {
-  final ChatProvider = context.watch<ChatProvider>();
-  
   @override
   Widget build(BuildContext context) {
+    final chatProvider = context.watch<ChatProvider>(); // Cambia el nombre de la variable local
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
-        children: [
-          Expanded(child: ListView.builder(
-            itemCount: ChatProvider,
-            itemBuilder: (context, index) {
-            return (index % 2 == 0)
-            ? const HerMessageBubble()
-            : const MyMessageBubble();
-            
-          })),
-            //caja de texto
-           const MessageFieldBox(),
-        ]),
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 2, // Usa la lista de mensajes de chatProvider
+                itemBuilder: (context, index) {
+                  //Instancia del message que sabrá de quien es el mensaje
+                  final message = chatProvider.messageList[index];
+                  //Asigna MessageBubble de quien venga el mensaje
+                  return (message.fromWho == FromWho.hers)
+                      ? const HerMessageBubble()
+                      :  MyMessageBubble(message: message,);
+                },
+              ),
+            ),
+            const MessageFieldBox(), // Caja de texto
+          ],
+        ),
       ),
     );
   }
