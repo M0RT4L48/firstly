@@ -19,7 +19,7 @@ class CoverPhoto extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10), 
         child: Image.asset(
-          'assets/sliver/portada.jpg',
+          'assets/BE-PortadaC.jpg',
           fit: BoxFit.fill,
         ),
       ),

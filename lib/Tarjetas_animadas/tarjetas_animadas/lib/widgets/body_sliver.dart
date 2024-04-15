@@ -20,28 +20,28 @@ class Body extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CustomIcon(
+              _CustomIcon(
                 icon: Icons.stars,
-                text: '89%',
+                text: '100%',
               ),
-              CustomIcon(
+              _CustomIcon(
                 icon: Icons.tv,
-                text: 'Netflix',
+                text: 'AppleTV',
               ),
-              CustomIcon(
-                icon: Icons.tv,
+              _CustomIcon(
+                icon: Icons.wc,
                 text: 'Tv +14',
               ),
-              CustomIcon(
+              _CustomIcon(
                 icon: Icons.av_timer_rounded,
-                text: '50m',
+                text: '2 h 20 min',
               ),
             ],
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              'When a young boy disappears, his mother, a police chief',
+              'Award-winning documentarian R.J. Cutler accompanies Billie on tour, on stage and at home with her family during the recording of the album that changed her life.',
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 15,
@@ -58,26 +58,29 @@ class Body extends StatelessWidget {
             ),
           ),
           SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
-                8,
+                7,
                 (index) => Padding(
-                  padding: EdgeInsets.only(left: 15.6, bottom: 8.0),
+                  padding: EdgeInsets.only(left: 8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/sliver/related${index + 1}.jpg',
-                      fit: BoxFit.fitWidth,
+                    child: Image(
                       height: size.height * 0.18,
                       width: size.width * 0.23,
+                      image: AssetImage(
+                        'assets/sliver/related00${index + 1}.jpg',
+                      ),
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
@@ -119,8 +122,8 @@ class Body extends StatelessWidget {
   }
 }
 
-class CustomIcon extends StatelessWidget {
-  const CustomIcon({
+class _CustomIcon extends StatelessWidget {
+  const _CustomIcon({
     Key? key, // Cambiado de Key key a Key? key
     required this.icon,
     required this.text,
@@ -159,8 +162,8 @@ class _Features extends StatelessWidget {
 
 
   final Size size;
-  final String? title;
-  final String? subtitle;
+  final String? title; // Se cambió String title a String? title
+  final String? subtitle; // Se cambió String subtitle a String? subtitle
   final Color? colorline;
 
   @override
@@ -177,28 +180,30 @@ class _Features extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title ?? '',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(height: 7),
-                Text(
-                  subtitle ?? '',
-                  style: TextStyle(fontSize: 16),
-                ),
+                if (title != null) // Verifica si title no es nulo
+                  Text(
+                    title!,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                if (subtitle != null) // Verifica si subtitle no es nulo
+                  SizedBox(height: 7),
+                  Text(
+                    subtitle!,
+                    style: TextStyle(fontSize: 16),
+                  ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 5.0),
                   child: Container(
                     height: 5,
                     color: colorline,
                   ),
                 ),
-                Icon(
-                  Icons.pending,
-                  color: Colors.grey[400],
-                ),
               ],
             ),
+          ),
+          Icon(
+            Icons.pending,
+            color: Colors.grey[400],
           ),
         ],
       ),

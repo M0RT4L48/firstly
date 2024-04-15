@@ -13,8 +13,8 @@ class BackgroundSliver extends StatelessWidget {
       bottom: 0,
       top: 0,
       child: Image.asset(
-        'assets/sliver/004.gif',
-        fit: BoxFit.cover,
+        'assets/sliver/BE-PortadaG.jpg',
+        fit: BoxFit.fill,
       ), 
     );
   }
