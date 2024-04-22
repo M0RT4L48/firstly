@@ -8,6 +8,7 @@ import 'package:tarjetas_animadas/widgets/data_cut_rectangle.dart';
 import 'package:tarjetas_animadas/widgets/cut_rectangle.dart';
 import 'package:tarjetas_animadas/widgets/favorite_circle.dart';
 
+// Define un widget StatefulWidget para la pantalla principal
 class HomeSliverChallenge extends StatefulWidget {
   const HomeSliverChallenge({Key? key}) : super(key: key);
 
@@ -15,6 +16,7 @@ class HomeSliverChallenge extends StatefulWidget {
   _HomeSliverChallengeState createState() => _HomeSliverChallengeState();
 }
 
+// Define el estado del widget StatefulWidget
 class _HomeSliverChallengeState extends State<HomeSliverChallenge> {
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class _HomeSliverChallengeState extends State<HomeSliverChallenge> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
+          // Encabezado personalizado que se desplaza
           SliverPersistentHeader(
             delegate: _AppBarNetflix(
               maxExtended: size.height * .35,
@@ -38,6 +41,7 @@ class _HomeSliverChallengeState extends State<HomeSliverChallenge> {
   }
 }
 
+// Define el encabezado personalizado que se desplaza con el contenido
 class _AppBarNetflix extends SliverPersistentHeaderDelegate {
   const _AppBarNetflix({
     required this.maxExtended,
@@ -103,6 +107,7 @@ class _AppBarNetflix extends SliverPersistentHeaderDelegate {
       false;
 }
 
+// Define el widget para mostrar la imagen de portada con una rotación dinámica
 class _CoverCard extends StatelessWidget {
   const _CoverCard({
     Key? key,
@@ -135,6 +140,7 @@ class _CoverCard extends StatelessWidget {
   }
 }
 
+// Define el widget para la barra inferior personalizada
 class _CustomBottomSliverBar extends StatelessWidget {
   final Size size;
   final double fixrotation;
@@ -160,6 +166,7 @@ class _CustomBottomSliverBar extends StatelessWidget {
   }
 }
 
+// Define el widget para la barra inferior personalizada
 class _CustomBottomSliver extends StatelessWidget {
   const _CustomBottomSliver({
     required this.size,

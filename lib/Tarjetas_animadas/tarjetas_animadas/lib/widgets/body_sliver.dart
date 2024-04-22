@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tarjetas_animadas/theme.dart';
 
+// Define el widget Body, que representa el cuerpo principal de la aplicación
 class Body extends StatelessWidget {
   const Body({
-    Key? key, // Se cambió Key key a Key? key
-    required this.size,
+    Key? key, 
+    required this.size, 
   }) : super(key: key);
 
   final Size size;
@@ -12,14 +13,16 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 10),
-      color: backgroundColor,
+      padding: EdgeInsets.only(top: 10), 
+      color: backgroundColor, // Color de fondo
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Row de iconos y texto relacionado
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              // Widgets personalizados de icono y texto
               _CustomIcon(
                 icon: Icons.stars,
                 text: '100%',
@@ -38,6 +41,7 @@ class Body extends StatelessWidget {
               ),
             ],
           ),
+          // Texto descriptivo
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
@@ -48,6 +52,7 @@ class Body extends StatelessWidget {
               ),
             ),
           ),
+          // Texto relacionado con programas
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
@@ -57,6 +62,7 @@ class Body extends StatelessWidget {
               ),
             ),
           ),
+          // Scroll horizontal de imágenes relacionadas
           SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -83,6 +89,7 @@ class Body extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
+          // Texto relacionado con temporadas
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
@@ -92,6 +99,7 @@ class Body extends StatelessWidget {
               ),
             ),
           ),
+          // Características relacionadas con temporadas
           _Features(
             size: size,
             title: 'Season 1',
@@ -122,16 +130,16 @@ class Body extends StatelessWidget {
   }
 }
 
+// Widget personalizado de icono y texto
 class _CustomIcon extends StatelessWidget {
   const _CustomIcon({
-    Key? key, // Cambiado de Key key a Key? key
-    required this.icon,
-    required this.text,
+    Key? key, 
+    required this.icon, 
+    required this.text, 
   }) : super(key: key);
 
-
   final IconData icon;
-  final String text;
+  final String text; 
 
   @override
   Widget build(BuildContext context) {
@@ -151,28 +159,29 @@ class _CustomIcon extends StatelessWidget {
   }
 }
 
+// Widget de características relacionadas
 class _Features extends StatelessWidget {
   const _Features({
-    Key? key, // Se cambió Key key a Key? key
-    required this.size,
-    this.title,
-    this.subtitle,
-    this.colorline,
+    Key? key, 
+    required this.size, 
+    this.title, 
+    this.subtitle, 
+    this.colorline, 
   }) : super(key: key);
 
-
-  final Size size;
-  final String? title; // Se cambió String title a String? title
-  final String? subtitle; // Se cambió String subtitle a String? subtitle
-  final Color? colorline;
+  final Size size; // Tamaño del widget
+  final String? title; // Título
+  final String? subtitle; // Subtítulo
+  final Color? colorline; // Color de la línea
 
   @override
   Widget build(BuildContext context) {
+    // Devuelve un contenedor que contiene información relacionada con temporadas
     return Container(
-      padding: EdgeInsets.all(15),
-      width: size.width,
-      color: backgroundColor,
-      height: 100,
+      padding: EdgeInsets.all(15), // Relleno
+      width: size.width, // Ancho del contenedor igual al tamaño del widget
+      color: backgroundColor, // Color de fondo
+      height: 100, // Altura del contenedor
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -180,13 +189,13 @@ class _Features extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (title != null) // Verifica si title no es nulo
+                if (title != null)
                   Text(
                     title!,
                     style: TextStyle(fontSize: 20),
                   ),
-                if (subtitle != null) // Verifica si subtitle no es nulo
-                  SizedBox(height: 7),
+                if (subtitle != null) SizedBox(height: 7),
+                if (subtitle != null)
                   Text(
                     subtitle!,
                     style: TextStyle(fontSize: 16),
