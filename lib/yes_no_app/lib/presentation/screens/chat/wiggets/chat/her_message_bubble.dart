@@ -3,37 +3,49 @@ import 'package:yes_no_app/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
   final Message message;
-  const HerMessageBubble({super.key, required this.message});
+
+  const HerMessageBubble({Key? key, required this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
+    final size = MediaQuery.of(context).size;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Container(
           decoration: BoxDecoration(
             color: colors.secondary,
-            borderRadius: BorderRadius.circular(20)
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              message.text, 
-              style:const TextStyle(color: Colors.white),),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  message.text,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  // Muestra la hora actual debajo del texto del mensaje
+                  '${DateTime.now().hour}:${DateTime.now().minute}',
+                  style: TextStyle(color: Colors.white.withOpacity(0.5)),
+                ),
+              ],
+            ),
           ),
         ),
-
-        const SizedBox(height: 5),
-         _ImageBubble(message.imageUrl!),
-         const SizedBox( height:10 ),
+        SizedBox(height: 5),
+        _ImageBubble(message.imageUrl!),
+        SizedBox(height: 10),
       ],
     );
   }
 }
+
 
 class _ImageBubble extends StatelessWidget {
   final String imageUrl;
