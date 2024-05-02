@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  final Message message;
+  const HerMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -17,28 +19,26 @@ class HerMessageBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20)
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text('NOUUUU', style: TextStyle(color: Colors.white),),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              message.text, 
+              style:const TextStyle(color: Colors.white),),
           ),
         ),
 
         const SizedBox(height: 5),
-
-         _ImageBubble(),
-
+         _ImageBubble(message.imageUrl!),
          const SizedBox( height:10 ),
-
       ],
     );
   }
 }
 
-
-
-
-
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+
+  const _ImageBubble(this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,8 @@ class _ImageBubble extends StatelessWidget {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: Image.network('https://media2.giphy.com/media/VzkTZ1DFYeBY5ZId6j/giphy.gif?cid=6c09b952rc5axibddznqh7jkyda1725fehgz5i4cp2paj01j&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g',
+      child: Image.network(
+        imageUrl,
       width: size.width * 0.7,
       height: 150,
       fit: BoxFit.cover,
@@ -57,7 +58,7 @@ class _ImageBubble extends StatelessWidget {
           width: size.width * 0.7,
           height: 150,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: const Text('Mi amor esta enviarndo un mensaje'),
+          child: const Text('Mi amor está enviando un mensaje'),
         );
       },)
     );

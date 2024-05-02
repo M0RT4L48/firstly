@@ -43,18 +43,19 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 2, // Usa la lista de mensajes de chatProvider
+                controller: chatProvider.chatScrollController,
+                itemCount: chatProvider.messageList.length, // Usa la lista de mensajes de chatProvider
                 itemBuilder: (context, index) {
                   //Instancia del message que sabrá de quien es el mensaje
                   final message = chatProvider.messageList[index];
                   //Asigna MessageBubble de quien venga el mensaje
                   return (message.fromWho == FromWho.hers)
-                      ? const HerMessageBubble()
+                      ?  HerMessageBubble(message: message)
                       :  MyMessageBubble(message: message,);
                 },
               ),
             ),
-            const MessageFieldBox(), // Caja de texto
+            MessageFieldBox(onValue: chatProvider.sendMessage), // Caja de texto
           ],
         ),
       ),
