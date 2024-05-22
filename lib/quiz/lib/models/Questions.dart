@@ -1,7 +1,7 @@
 class Question{
-  final int id, answer;
-  final String question;
-  final List<String> options;
+  late final int id, answer;
+  late final String question;
+  late final List<String> options;
 
   question({this.id, this.question, this.answer, this.options});
 }
